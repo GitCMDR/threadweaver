@@ -31,8 +31,10 @@ func NewBot(cfg *config.Config) (*Bot, error) {
 		return nil, err
 	}
 
+	threadsGateway := gateways.NewThreadsGateway() // okay this is iffy; lets rectify in future update (we should pass the env values here)
+
 	// set up controller
-	controller := controllers.NewController(mastodonGateway, blueskyGateway)
+	controller := controllers.NewController(mastodonGateway, blueskyGateway, threadsGateway)
 
 	// set up handler
 	handler := handlers.NewHandler(controller)
