@@ -1,19 +1,33 @@
 package controllers
 
 import (
-"gopkg.in/telebot.v3"
+	"context"
+	"github.com/GitCMDR/microblogreposter-bot/internal/gateways"
+	
+	"gopkg.in/telebot.v3"
 )
 
 type Controller struct {
-	// lets add some gateways here later
+	MastodonGateway *gateways.MastodonGateway
 }
 
-func NewController() *Controller {
-	return &Controller{}
+func NewController(mastodonGateway *gateways.MastodonGateway) *Controller {
+	return &Controller{
+		MastodonGateway: mastodonGateway,
+	}
 }
 
 func (c *Controller) ProcessMessage (tCtx telebot.Context) error {
-	return tCtx.Send("You said " + tCtx.Text())
+	// set up some dummy context, need to find a way to integrate this onto the main request lifecycle, but this suffices for now
+	ctx := context.Background()
+	
+	// post the message text to Mastodon
+	status, err := c.MastodonGateway.PostStatus(ctx, tCtx.Text())
+	if err != nil {
+		return tCtx.Send("Failed to post status to Mastodon: " + err.Error())
+	}
+
+	return tCtx.Send("Posted to Mastodon: " + status.URL)
 }
 
 func (c *Controller) StartCommand (tCtx telebot.Context) error {

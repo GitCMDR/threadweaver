@@ -9,7 +9,10 @@ import (
 // Config is a pretty simple struct to hold config values
 type Config struct {
 	TelegramToken string
-	MastodonToken string
+	MastodonServerURL string
+	MastodonClientID string
+	MastodonClientSecret string
+	MastodonAccessToken string
 	BlueskyToken string
 	ThreadsToken string
 }
@@ -23,7 +26,10 @@ func LoadConfig() (*Config, error) {
 
 	return &Config{
 		TelegramToken: os.Getenv("TELEGRAM_TOKEN"),
-		MastodonToken: os.Getenv("MASTODON_TOKEN"),
+		MastodonServerURL: os.Getenv("MASTODON_SERVER_URL"),
+		MastodonClientID: os.Getenv("MASTODON_CLIENT_ID"),
+		MastodonClientSecret: os.Getenv("MASTODON_CLIENT_SECRET"),
+		MastodonAccessToken: os.Getenv("MASTODON_ACCESS_TOKEN"),
 		BlueskyToken: os.Getenv("BLUESKY_TOKEN"),
 		ThreadsToken: os.Getenv("THREADS_TOKEN"),
 	}, nil

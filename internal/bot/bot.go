@@ -7,6 +7,7 @@ import (
 	"github.com/GitCMDR/microblogreposter-bot/internal/config"
 	"github.com/GitCMDR/microblogreposter-bot/internal/handlers"
 	"github.com/GitCMDR/microblogreposter-bot/internal/controllers"
+	"github.com/GitCMDR/microblogreposter-bot/internal/gateways"
 )
 
 type Bot struct {
@@ -14,7 +15,7 @@ type Bot struct {
 }
 
 func NewBot(cfg *config.Config) (*Bot, error) {
-	// Initialize the bot
+	// initialise the bot
 	b, err := telebot.NewBot(telebot.Settings{
 		Token:  cfg.TelegramToken,
 		Poller: &telebot.LongPoller{Timeout: 10 * time.Second},
@@ -23,13 +24,16 @@ func NewBot(cfg *config.Config) (*Bot, error) {
 		return nil, err
 	}
 
-	// Set up controller
-	controller := controllers.NewController()
+	// initialise gateways
+	mastodonGateway := gateways.NewMastodonGateway(cfg.MastodonServerURL, cfg.MastodonClientID, cfg.MastodonClientSecret, cfg.MastodonAccessToken)
 
-	// Set up handler
+	// set up controller
+	controller := controllers.NewController(mastodonGateway)
+
+	// set up handler
 	handler := handlers.NewHandler(controller)
 
-	// Handle messages and commands
+	// handler messages and commands
 	b.Handle(telebot.OnText, handler.HandleMessage)
 	b.Handle("/start", handler.HandleStart)
 	b.Handle("/help", handler.HandleHelp)
