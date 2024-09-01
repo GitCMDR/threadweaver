@@ -1,4 +1,4 @@
-module github.com/GitCMDR/microblogreposter-bot
+module github.com/GitCMDR/threadweaver
 
 go 1.22.4
 

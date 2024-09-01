@@ -4,10 +4,10 @@ import (
 	"time"
 
 	"gopkg.in/telebot.v3"
-	"github.com/GitCMDR/microblogreposter-bot/internal/config"
-	"github.com/GitCMDR/microblogreposter-bot/internal/handlers"
-	"github.com/GitCMDR/microblogreposter-bot/internal/controllers"
-	"github.com/GitCMDR/microblogreposter-bot/internal/gateways"
+	"github.com/GitCMDR/threadweaver/internal/config"
+	"github.com/GitCMDR/threadweaver/internal/handlers"
+	"github.com/GitCMDR/threadweaver/internal/controllers"
+	"github.com/GitCMDR/threadweaver/internal/gateways"
 )
 
 type Bot struct {

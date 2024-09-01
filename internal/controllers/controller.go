@@ -6,7 +6,7 @@ import (
 	"strings"
 	"os"
 
-	"github.com/GitCMDR/microblogreposter-bot/internal/gateways"
+	"github.com/GitCMDR/threadweaver/internal/gateways"
 	"gopkg.in/telebot.v3"
 )
 

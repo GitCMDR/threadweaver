@@ -4,7 +4,7 @@ import (
 	"strings"
 	"os"
 
-	"github.com/GitCMDR/microblogreposter-bot/internal/controllers"
+	"github.com/GitCMDR/threadweaver/internal/controllers"
 	"gopkg.in/telebot.v3"
 )
 

@@ -3,8 +3,8 @@ package main
 import (
 	"log"
     
-	"github.com/GitCMDR/microblogreposter-bot/internal/bot"
-	"github.com/GitCMDR/microblogreposter-bot/internal/config"
+	"github.com/GitCMDR/threadweaver/internal/bot"
+	"github.com/GitCMDR/threadweaver/internal/config"
 )
 
 func main() {
