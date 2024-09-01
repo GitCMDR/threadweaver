@@ -26,9 +26,13 @@ func NewBot(cfg *config.Config) (*Bot, error) {
 
 	// initialise gateways
 	mastodonGateway := gateways.NewMastodonGateway(cfg.MastodonServerURL, cfg.MastodonClientID, cfg.MastodonClientSecret, cfg.MastodonAccessToken)
+	blueskyGateway, err := gateways.NewBlueskyGateway(cfg.BlueskyAPIURL, cfg.BlueskyUsername, cfg.BlueskyPassword)
+	if err != nil {
+		return nil, err
+	}
 
 	// set up controller
-	controller := controllers.NewController(mastodonGateway)
+	controller := controllers.NewController(mastodonGateway, blueskyGateway)
 
 	// set up handler
 	handler := handlers.NewHandler(controller)

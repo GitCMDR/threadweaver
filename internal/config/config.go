@@ -13,7 +13,9 @@ type Config struct {
 	MastodonClientID string
 	MastodonClientSecret string
 	MastodonAccessToken string
-	BlueskyToken string
+	BlueskyAPIURL      string
+	BlueskyUsername    string
+	BlueskyPassword    string
 	ThreadsToken string
 }
 
@@ -30,7 +32,9 @@ func LoadConfig() (*Config, error) {
 		MastodonClientID: os.Getenv("MASTODON_CLIENT_ID"),
 		MastodonClientSecret: os.Getenv("MASTODON_CLIENT_SECRET"),
 		MastodonAccessToken: os.Getenv("MASTODON_ACCESS_TOKEN"),
-		BlueskyToken: os.Getenv("BLUESKY_TOKEN"),
+		BlueskyAPIURL:      os.Getenv("BLUESKY_API_URL"),
+		BlueskyUsername:    os.Getenv("BLUESKY_USERNAME"),
+		BlueskyPassword:    os.Getenv("BLUESKY_PASSWORD"),
 		ThreadsToken: os.Getenv("THREADS_TOKEN"),
 	}, nil
 }
